@@ -3,16 +3,14 @@ from tkinter import *
 from tkinter import ttk
 from tokenize import String
 
+from contacts import Contacts
+
 janela = Tk()
 texto1 = String
 lista = []
+ 
 
-class Funcs():
-    def new_contato(self):
-        # lista.append((self.in_pesquisar.get(),self.in_pesquisar.get(),self.in_pesquisar.get(),self.in_pesquisar.get()))
-        self.contatos_list.insert("",'end',values=(self.in_pesquisar.get(),self.in_pesquisar.get(),self.in_pesquisar.get(),self.in_pesquisar.get()))
-
-class Application(Funcs):
+class Application(Contacts):
     def __init__(self):
         self.janela = janela
         self.Tela()
@@ -20,7 +18,10 @@ class Application(Funcs):
         self.criar_botoes()
         self.input_pesquisar()
         self.lista_contatos()
+        Contacts()
+        
         janela.mainloop()
+
     def Tela(self):
         self.janela.title("Agenda De Contatos")
         self.janela.configure(background="#1e3743")
@@ -47,28 +48,35 @@ class Application(Funcs):
         self.bt_atualizar = Button(self.frame_1,text="Atualizar", command=NULL)
         self.bt_atualizar.place(relx=0.8, rely= 0.02, relwidth= 0.10, relheight= 0.15)
     def input_pesquisar(self):
-        self.label_pesquisar = Label(self.frame_1, text="Código")
-        self.label_pesquisar.place(relx=0.06,rely=0.05, relwidth=0.05)
-        self.in_pesquisar = Entry(self.frame_1)
-        self.in_pesquisar.place(relx=0.055, rely= 0.15, relwidth=0.06)
 
-        self.label_pesquisar = Label(self.frame_1, text="Nome:")
-        self.label_pesquisar.place(relx=0.06,rely=0.40, relwidth=0.05,height=30)
-        self.in_pesquisar = Entry(self.frame_1)
-        self.in_pesquisar.place(relx=0.12, rely= 0.40, relwidth=0.8,height=30)
+        # Codigo
 
-        self.label_pesquisar = Label(self.frame_1, text="CPF:")
-        self.label_pesquisar.place(relx=0.06,rely=0.565, relwidth=0.05,height=30)
-        self.in_pesquisar = Entry(self.frame_1)
+        self.label_codigo = Label(self.frame_1, text="Código")
+        self.label_codigo.place(relx=0.06,rely=0.05, relwidth=0.05)
+        self.in_codigo = Entry(self.frame_1)
+        self.in_codigo.place(relx=0.055, rely= 0.15, relwidth=0.06)
 
-        self.in_pesquisar.place(relx=0.12, rely= 0.565, relwidth=0.325,height=30)
+        # Nome
 
-        self.label_pesquisar = Label(self.frame_1, text="Email:")
-        self.label_pesquisar.place(relx=0.46,rely=0.565, relwidth=0.05,height=30)
-        self.in_pesquisar = Entry(self.frame_1)
-        self.in_pesquisar.place(relx=0.52, rely= 0.565, relwidth=0.4,height=30)
-    def teste(self):
-        print(self.in_pesquisar.get()) 
+        self.label_nome = Label(self.frame_1, text="Nome:")
+        self.label_nome.place(relx=0.06,rely=0.40, relwidth=0.05,height=30)
+        self.in_nome = Entry(self.frame_1)
+        self.in_nome.place(relx=0.12, rely= 0.40, relwidth=0.8,height=30)
+
+        # CPF
+
+        self.in_cpf = Label(self.frame_1, text="CPF:")
+        self.in_cpf.place(relx=0.06,rely=0.565, relwidth=0.05,height=30)
+        self.in_cpf = Entry(self.frame_1)
+        self.in_cpf.place(relx=0.12, rely= 0.565, relwidth=0.325,height=30)
+
+        # Email
+
+        self.label_email = Label(self.frame_1, text="Email:")
+        self.label_email.place(relx=0.46,rely=0.565, relwidth=0.05,height=30)
+        self.in_email = Entry(self.frame_1)
+        self.in_email.place(relx=0.52, rely= 0.565, relwidth=0.4,height=30)
+
     def lista_contatos(self):
         self.contatos_list = ttk.Treeview(self.frame_2, columns=['col1','col2','col3','col4'], height=3)
 
@@ -92,15 +100,7 @@ class Application(Funcs):
 
         self.contatos_list.configure(yscroll = self.scroll_bar, yscrollcommand= self.scroll_bar.set)
 
-        contacts = []
-        for n in range(1, 100):
-            contacts.append((f'codigo {n}',f'Okkkk {n}'))
 
-        # add data to the treeview
-        i=0
-        self.contatos_list.insert("",'end',iid=i,
-		values=(i,'Alex','Four',78,'Male'))
-            
-
+        
 
 Application()
